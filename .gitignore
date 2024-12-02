@@ -1,0 +1,9 @@
+### remark-boilerplate ###
+build/
+.publish
+
+# node modules and their locks
+node_modules/
+src/js/node_modules/
+package-lock.json
+src/js/package-lock.json

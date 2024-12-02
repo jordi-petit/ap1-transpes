@@ -1,0 +1,32 @@
+//script(src="/https://gnab.github.io/remark/downloads/remark-latest.min.js")
+
+script(src="js/vendor/remark.min.js")
+
+script(src="js/vendor/remark-fallback.js")
+
+script(src="js/vendor/remark-language.js")
+
+script(src="js/main.js")
+
+// jpetit: mathjax
+script(type='text/javascript').
+
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$']],
+        },
+        svg: {
+            fontCache: 'global',
+        }
+    };
+
+script(id="MathJax-script", async, src="js/node_modules/mathjax/es5/tex-svg.js")
+
+// jpetit: cytoscape
+script(src="js/node_modules/cytoscape/dist/cytoscape.min.js")
+
+// jpetit: coffeescript
+script(src="js/node_modules/coffeescript/lib/coffeescript-browser-compiler-legacy/coffeescript.js")
+
+// jpetit: my cytoscape handler
+script(type="text/coffeescript", src="coffee/mycys.coffee")
