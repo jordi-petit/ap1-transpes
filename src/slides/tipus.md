@@ -351,21 +351,6 @@ if anar_amb_compte:
 
 # Estil de codi amb booleans
 
-## Bon estil 💜
-
-```python
-# Comprovar si és cert
-if trobat:
-    ...
-
-# Comprovar si és fals
-if not trobat:
-    ...
-
-# Assignació directa
-gela = temperatura <= 0
-```
-
 ## Mal estil 💩
 
 ```python
@@ -380,4 +365,19 @@ if temperatura <= 0:
     gela = True
 else:
     gela = False
+```
+
+## Bon estil 💜
+
+```python
+# Comprovar si és cert
+if trobat:
+    ...
+
+# Comprovar si és fals
+if not trobat:
+    ...
+
+# Assignació directa
+gela = temperatura <= 0
 ```
