@@ -381,3 +381,138 @@ if not trobat:
 # Assignació directa
 gela = temperatura <= 0
 ```
+
+---
+
+class: center, middle
+
+# Comprovació de tipus
+
+---
+
+# Comprovació dinàmica vs. estàtica
+
+### Comprovació dinàmica (Python per defecte)
+
+  * El sistema de tipus es comprova en **temps d'execució**.
+
+  * Un error de tipus atura el programa quan s'executa la línia conflictiva.
+
+  * **Inconvenient**: els errors només es descobreixen en executar el codi, possiblement pels usuaris finals.
+
+### Comprovació estàtica (C++, Eines per a Python)
+
+  * El sistema de tipus es comprova **abans d'executar**.
+
+  * El desenvolupador pot veure l'error abans de distribuir el programa.
+
+  * **Avantatge**: proporciona programes més segurs i robustos.
+
+---
+
+# Exemple d'error de tipus dinàmic
+
+Aquest error només es detecta en temps d'execució i **només si `n` és parell**.
+
+```python
+from yogi import read
+
+n = read(int)
+if n % 2 == 0:
+    n = n + 'dotze'         # 💣 TypeError en temps d'execució
+```
+
+Si un desenvolupador només prova amb valors senars, no trobarà mai l'error.
+
+---
+
+# Eines de comprovació estàtica per a Python
+
+Malgrat que Python és dinàmic, podem utilitzar eines externes per afegir una capa de comprovació estàtica.
+
+Presentarem dues opcions populars:
+
+1.  **mypy**
+
+2.  **Pylance**
+
+---
+
+# mypy
+
+  * És un comprovador de tipus estàtic que funciona des del **terminal**.
+
+  * Analitza el codi i informa dels errors de tipus trobats.
+
+  * L'haureu d'utilitzar als exàmens d'AP1!
+
+## Instal·lació
+
+```bash
+python3 -m pip install mypy
+```
+
+## Ús
+
+```bash
+mypy programa.py
+```
+
+## Sortida d'Exemple
+
+```text
+programa.py:7: error: Unsupported operand types for + ("int" and "str")
+Found 1 error in 1 file (checked 1 source file)
+```
+
+---
+
+# Pylance
+
+  * És una **extensió de Visual Studio Code**.
+
+  * Ofereix comprovació de tipus en **temps real**, directament a l'editor.
+
+  * Subratlla els errors i ofereix informació detallada en passar el ratolí per sobre.
+
+<img src="img/pylance3.png" style="height: 20em; display: flex; margin: auto;">
+
+---
+
+# Configuració de Pylance
+
+1.  **Instal·lar l'extensió**: Cerca i instal·la *"Python extension for Visual Studio Code"*.
+
+  <img src="img/pylance2.png" style="height: 8em; display: flex; margin: auto;">
+
+2.  **Activar el mode estricte**: Ves a la configuració i canvia `Type Checking Mode` a `Strict`.
+
+  <img src="img/pylance1.png" style="height: 6em; display: flex; margin: auto;">
+
+<center>
+    👆 Aquest pas és crucial!
+</center>
+
+---
+
+# Comprovació a Jutge.org
+
+  * En enviar una solució, podeu triar el "compilador" **MyPy**.
+
+  * Primer, `Jutge.org` executa `mypy` sobre el vostre codi.
+
+      * Si hi ha errors, rebreu un veredicte de **"Compilation Error"**.
+
+      * Si no n'hi ha, el programa s'executa amb l'intèrpret normal.
+
+> **Avís (AP1, AP2, AP3)**: Als exàmens, l'ús del compilador MyPy serà obligatori.
+
+---
+
+# Sumari
+
+  * Per si mateix, Python només detecta errors de tipus en **temps d'execució** (comprovació dinàmica).
+
+  * Per escriure programes més segurs, és vital utilitzar eines de **comprovació estàtica** que detectin errors abans d'executar.
+
+  * **`mypy`** i **Pylance** són dues excel·lents opcions que hauríeu d'incorporar al vostre flux de treball.
