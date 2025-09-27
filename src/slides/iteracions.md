@@ -556,14 +556,14 @@ Es basa en la propietat: $\text{mcd}(x, y) = \text{mcd}(x-y, y)$ si $x > y$.
 
 ```text
      78  66
-    -------
+    -----
      12  66   (78-66)
      12  54   (66-12)
      12  42   (54-12)
      ...
      12   6
       6   6   (12-6)
-    -------
+    -----
         6
 ```
 
@@ -656,7 +656,7 @@ for ⟨variable⟩ in range(⟨inici⟩, ⟨final⟩, ⟨pas⟩):
 # Exemples de `range`
 
 | `range`             | Valors que genera |
-| ----------- | ----------- |
+| ------- | ------- |
 | `range(5)`        | `0 1 2 3 4`       |
 | `range(1, 6)`     | `1 2 3 4 5`       |
 | `range(0, 8, 2)`  | `0 2 4 6`         |
