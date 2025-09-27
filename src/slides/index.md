@@ -56,23 +56,25 @@ Al fitxer adjunt tens un capítol de llibre sobre Python escrit en Markdown. Vul
 
    * Posteriorment, alguns dels temes, s'han revisat i corregit manualment per part de l'autor (marcats amb 👍).
 
-   * Per raons de temps, encara no s'ha pogut revisar tot el material generat.
+   * Per raons de temps (i perquè no ho utilitzo a classe), encara no s'ha pogut revisar tot el material generat (marcat amb 🚧).
+
+     A mesura que necessiti presentar algun tema, el revisaré i corregiré.
 
 
 ---
 
 # Índex
 
-- [Inici](inici.html)
-- [Lectura i escriptura](lectura-i-escriptura.html)
-- [Iteracions](iteracions.html)
-- [Tipus](tipus.html) 👍
-- [Funcions i accions](funcions-i-accions.html)
-- [Seqüències](sequencies.html)
-- [Recursivitat](recursivitat.html)
-- [Llistes](llistes.html)
-- [Algorismes de cerca i ordenació](cerca-i-ordenacio.html)
-- [Matrius](matrius.html)
-- [Estructures](estructures.html)
-- [Generació exhaustiva](generacio-exhaustiva.html) 👍
-- [Conjunts i diccionaris](conjunts-i-diccionaris.html)
+- 🚧 [Inici](inici.html)
+- 🚧 [Lectura i escriptura](lectura-i-escriptura.html)
+- 🚧 [Iteracions](iteracions.html)
+- 👍 [Tipus](tipus.html)
+- 🚧 [Funcions i accions](funcions-i-accions.html)
+- 🚧 [Seqüències](sequencies.html)
+- 🚧 [Recursivitat](recursivitat.html)
+- 🚧 [Llistes](llistes.html)
+- 🚧 [Algorismes de cerca i ordenació](cerca-i-ordenacio.html)
+- 🚧 [Matrius](matrius.html)
+- 🚧 [Estructures](estructures.html)
+- 👍 [Generació exhaustiva](generacio-exhaustiva.html)
+- 🚧 [Conjunts i diccionaris](conjunts-i-diccionaris.html)
