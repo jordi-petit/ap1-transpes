@@ -22,18 +22,16 @@ Una estructura de dades que permet emmagatzemar una col·lecció de dades del ma
 
 # Què és una llista?
 
-Una col·lecció d'elements del mateix tipus (enters, reals, etc.), accessibles per un **índex**.
-
-<br>
+Una col·lecció d'elements del mateix tipus (enters, reals, etc.), accessibles a través d'un **índex**.
 
   - L'índex és un enter que indica la posició, **començant per 0**.
+
   - Per a una llista de `n` elements, els índexs van de `0` a `n-1`.
 
-<br>
-&lt;center&gt;
-&lt;img src=&#39;./llista.png&#39; style=&#39;height: 8em;&#39;/&gt;
-&lt;/center&gt;
-<br>
+<center>
+<img src="img/llista.png" style="height: 10em;">
+</center>
+
 
 Per exemple, si `v = [3, 5, -1, 7, 2]`, llavors `v[3]` és `7`.
 
@@ -111,8 +109,7 @@ True
 
 # Accés als elements
 
-S'accedeix a un element especificant el seu índex entre claudàtors. Els índexs poden ser negatius (`-1` és el darrer element).
-
+S'accedeix a un element especificant el seu índex entre claudàtors.
 ```python
 v = [11.5, -13.2, 4.6, 7.8]
 print(v[2])         # escriu 4.6
@@ -131,9 +128,14 @@ noms[10] = "Jordi"              # 💥 la posició 10 no existeix
 if noms[4] == "Carme": ...      # 💥 la posició  4 no existeix
 ```
 
+<br>
+
+Els índexs poden ser negatius (`-1` és el darrer element).
+
+
 ---
 
-# Subllistes (Slices)
+# Subllistes (*slices*)
 
 Permeten crear noves llistes o modificar segments d'una llista existent. La sintaxi és la mateixa que a `range`.
 
@@ -162,7 +164,7 @@ Modificació de segments:
 
 # Afegir i treure elements
 
-Mètodes per modificar la mida de la llista. Afegir/treure pel final és eficient.
+Mètodes per modificar la mida de la llista.
 
 ```python
 >>> xs = [10, 20, 30]
@@ -183,6 +185,12 @@ Mètodes per modificar la mida de la llista. Afegir/treure pel final és eficien
 []
 ```
 
+<br>
+
+Afegir/treure pel final és eficient.
+
+Fer-ho per altres posicions és lent, perquè cal desplaçar els elements.
+
 ---
 
 # Recorregut d'una llista (lectura)
@@ -201,8 +209,10 @@ La variable del bucle (`temperatura`) és una **còpia** de l'element. Modificar
 
 ```python
 nombres = [3, 5, -2, 4]
+
 for nombre in nombres:          #  👀 còpia
     nombre = nombre * 2
+
 # nombres continua sent [3, 5, -2, 4] 😢
 ```
 
@@ -214,8 +224,10 @@ Per modificar els elements de la llista, cal iterar sobre els **índexs**.
 
 ```python
 nombres = [3, 5, -2, 4]
+
 for index in range(len(nombres)):
     nombres[index] = nombres[index] * 2
+
 # nombres ara és [6, 10, -4, 8] 😃
 ```
 
@@ -224,11 +236,14 @@ for index in range(len(nombres)):
 # El tipus llista
 
   - En Python, les llistes són de tipus `list`.
+
   - És una bona pràctica que tots els elements d'una llista siguin del mateix tipus (llistes **homogènies**).
+
   - El sistema de tipus de Python utilitza la notació `list[T]`, on `T` és el tipus dels elements. Ex: `list[int]`, `list[str]`.
+
   - Cal anotar el tipus quan es crea una llista buida.
 
-<!-- end list -->
+<br/>
 
 ```python
 # No cal anotar, es dedueix
@@ -236,6 +251,9 @@ l1: list[int] = [40, 20, 34, 12, 40]
 
 # Cal anotar, perquè la llista és buida
 l2: list[float] = []
+
+# Sintàxi alternativa (recomanadada)
+l3 = list[int]()
 ```
 
 ---
@@ -262,7 +280,7 @@ La diferència clau és que els textos són **immutables**: no es poden modifica
 
 ```python
 >>> s[0] = 'C'
-TypeError: 'str' object does not support item assignment
+💣 TypeError: 'str' object does not support item assignment
 ```
 
 ---
@@ -343,7 +361,7 @@ Els elements de les llistes també es poden desempaquetar:
 from yogi import *
 
 # desar tota la seqüència en una llista
-L: list[int] = []
+L = list[int]()
 for x in tokens(int):
     L.append(x)
 
@@ -357,7 +375,7 @@ print(c)
 
 ---
 
-# Exemple: Comptar iguals al darrer (refactoritzat)
+# Exemple: Comptar iguals al darrer
 
 Estructurar el codi en funcions el fa més llegible i reutilitzable.
 
@@ -366,7 +384,7 @@ from yogi import *
 
 def llegir_llista() -> list[int]:
     """Retorna la llista de tots els enters de l'entrada."""
-    L: list[int] = []
+    L = list[int]()
     for x in tokens(int):
         L.append(x)
     return L
@@ -383,12 +401,13 @@ def main() -> None:
     L = llegir_llista()
     print(ocurrencies(L, L[-1]))
 
-main()
+if __name__ == "__main__":
+    main()
 ```
 
 ---
 
-# Exemple: Comptar iguals al darrer (avançat)
+# Exemple: Comptar iguals al darrer
 
 Python sovint ofereix maneres més directes de fer les coses.
 
@@ -400,6 +419,7 @@ print(L.count(L[-1]))
 ```
 
   - `list(tokens(int))`: Converteix directament l'entrada en una llista.
+
   - `L.count(x)`: Mètode de llista que compta les aparicions de `x`.
 
 ---
@@ -551,7 +571,7 @@ Una manera concisa i expressiva de crear llistes, similar a la notació matemàt
 **Enfocament tradicional (amb bucle):**
 
 ```python
-quadrats: list[int] = []
+quadrats = list[int]()
 for i in range(n):
     quadrats.append(i * i)
 ```
@@ -574,10 +594,9 @@ Es pot afegir una clàusula `if` per filtrar els elements que s'inclouen a la ll
 
 `[expressió for variable in seqüència if condició]`
 
-<br>
-&lt;img src=&#39;./esquema.png&#39; style=&#39;width: 24em&#39;/&gt;
-
-<br>
+<center>
+<img src="img/esquema.png" style="height: 5em;">
+</center>
 
 **Exemple**: Quadrats entre 0 i 20 que acaben en 6.
 
