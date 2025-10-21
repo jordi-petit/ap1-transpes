@@ -18,7 +18,7 @@ Departament de Ciències de la Computació
 
 # Matrius
 
-\<img src='./matrius.png' style='height: 8em; float: right; margin: 2em 0 1em 1em;'/\>
+<img src='./img/matrius/matrius.png' style='height: 8em; '>
 
   * Una matriu és una estructura de dades bidimensional (files i columnes).
 
@@ -31,18 +31,17 @@ Departament de Ciències de la Computació
 # Matrius en Python
 
   * La llista "exterior" representa les files.
+
   * Les llistes "interiors" representen els valors de cada fila.
 
-<!-- end list -->
-
-```python
-m = [
-    [ 3,  5, -1,  7,  2],
-    [ 7,  1, -1, 17,  6],
-    [ 6,  1,  3,  1, 12],
-    [21,  0, -7,  4,  2]
-]
-```
+  ```python
+  m = [
+      [ 3,  5, -1,  7,  2],
+      [ 7,  1, -1, 17,  6],
+      [ 6,  1,  3,  1, 12],
+      [21,  0, -7,  4,  2]
+  ]
+  ```
 
   * Per accedir a l'element a la fila `i` i columna `j`: `m[i][j]`
 
@@ -52,31 +51,27 @@ m = [
 
 ---
 
-# Tipus de les Matrius
+# Tipus de les matrius
 
-  * Si els elements de la matriu són de tipus `T`, el tipus de la matriu és:
+* Si els elements de la matriu són de tipus `T`, el tipus de la matriu és:
 
-<!-- end list -->
+  ```python
+  list[list[T]]
+  ```
 
-```python
-list[list[T]]
-```
+* Per exemple, per a aplicacions matemàtiques:
 
-  * Per exemple, per a aplicacions matemàtiques:
+  ```python
+  list[list[float]]
+  ```
 
-<!-- end list -->
 
-```python
-list[list[float]]
-```
 
 ---
 
-# Creació de Matrius: Per Extensió
+# Creació de matrius
 
-  * Es poden inicialitzar directament, com les llistes.
-
-<!-- end list -->
+Directament:
 
 ```python
 m = [
@@ -87,81 +82,66 @@ m = [
 ]
 ```
 
----
+Amb comprensions:
 
-# Creació de Matrius: Per Comprensió
+  * Crear una matriu de `m ✕ n` zeros:
 
-  * S'utilitzen llistes de comprensió niuades.
-
-  * Crear una matriu de `m` ⨉ `n` zeros:
-
-<!-- end list -->
-
-```python
-zeros = [[0 for _ in range(n)] for _ in range(m)]
-```
+  ```python
+  zeros = [[0 for _ in range(n)] for _ in range(m)]
+  ```
 
   * Crear una matriu on cada element és la seva posició `(i, j)`:
 
-<!-- end list -->
+  ```python
+  posicions = [[(i, j) for j in range(n)] for i in range(m)]
+  ```
 
-```python
-posicions = [[(i, j) for j in range(n)] for i in range(m)]
-```
 
 ---
 
-# Matrius de Més Dimensions
+# Matrius de més dimensions
 
-\<img src='./matriu3d.png' style='height: 8em; float: right; margin: 2em 0 1em 1em;'/\>
+<img src='./img/matrius/matriu3d.png' style='height: 8em'/>
 
   * Es poden crear niuant més llistes.
 
   * Per exemple, una matriu tridimensional de `m ✕ n ✕ r` zeros:
 
-<!-- end list -->
-
-```python
-matriu_3d = [[[0.0 for k in range(r)] for j in range(n)] for i in range(m)]
-```
+  ```python
+  matriu_3d = [[[0.0 for k in range(r)] for j in range(n)] for i in range(m)]
+  ```
 
 ---
 
-# Declaracions de Tipus amb `TypeAlias`
+# Declaracions de tipus amb `TypeAlias`
 
   * S'utilitza `TypeAlias` per donar noms més llegibles a tipus complexos.
 
-<!-- end list -->
+  ```python
+  from typing import TypeAlias
 
-```python
-from typing import TypeAlias
+  Temperatures: TypeAlias = list[float]
+  Registre: TypeAlias = list[Temperatures]
 
-Temperatures: TypeAlias = list[float]
-Registre: TypeAlias = list[Temperatures]
-
-registre: Registre = [[0.0 for h in range(24)] for d in range(365)]
-```
+  registre: Registre = [[0.0 for h in range(24)] for d in range(365)]
+  ```
 
   * Facilita la comprensió del codi:
 
-<!-- end list -->
-
-```python
-def temperatura_mitjana(temperatures: Temperatures) -> float:
-    ...
-```
+  ```python
+  def temperatura_mitjana(temperatures: Temperatures) -> float:
+      ...
+  ```
 
 ---
 
-# Mides de les Matrius
+# Mides de les matrius
 
   * `len(mat)` retorna el **nombre de files**.
 
   * `len(mat[0])` retorna el **nombre de columnes** (de la primera fila).
 
   * El nombre total d'elements és `len(mat) * len(mat[0])`.
-
-<!-- end list -->
 
 ```python
 >>> mat = [
@@ -180,27 +160,17 @@ def temperatura_mitjana(temperatures: Temperatures) -> float:
 
 ---
 
-# Operacions Matemàtiques sobre Matrius
+class: center, middle
 
-\<img src='./mates.png' style='height: 8em; float: right; margin: 2em 0 1em 1em;'/\>
+## Matrius
 
-  * Suma de matrius
-
-  * Trobar la suma per files més gran
-
-  * Transposar una matriu quadrada
-
-  * Comprovar si una matriu és simètrica
-
-  * Producte de matrius
+# Operacions matemàtiques sobre matrius
 
 ---
 
-# Tipus de Dades
+# Tipus de dades
 
-  * Definirem àlies per als tipus de fila i matriu.
-
-<!-- end list -->
+Definim àlies per als tipus de fila i matriu:
 
 ```python
 from typing import TypeAlias
@@ -211,14 +181,14 @@ Matriu: TypeAlias = list[Fila]
 
 ---
 
-# Suma de Matrius
+# Suma de matrius
 
-\<img src='./suma-matrius.png' style='height: 9em; float: right; margin: 2em 0 1em 1em;'/\>
 
-  * Les dues matrius han de tenir les mateixes dimensions.
-  * La suma es realitza element a element.
+* Les dues matrius han de tenir les mateixes dimensions.
 
-<!-- end list -->
+* La suma es realitza element a element.
+
+<img src='img/matrius/suma-matrius.png' style='height: 9em'\>
 
 ```python
 def suma(A: Matriu, B: Matriu) -> Matriu:
@@ -226,6 +196,7 @@ def suma(A: Matriu, B: Matriu) -> Matriu:
     Retorna la suma de A i B.
     Prec: A i B són dues matrius m ⨉ n, amb m > 0.
     """
+
     m = len(A)
     n = len(A[0])
     return [[A[i][j] + B[i][j] for j in range(n)] for i in range(m)]
@@ -233,14 +204,14 @@ def suma(A: Matriu, B: Matriu) -> Matriu:
 
 ---
 
-# Màxima Suma de les Files
+# Màxima suma de les files
 
-\<img src='./suma-fila.png' style='height: 10em; float: right; margin: .5em .5em 1em .5em;'/\>
 
-  * Volem trobar el valor màxim entre les sumes de totes les files.
-  * Es pot fer de forma concisa amb `max` i `sum`.
+Volem trobar el valor màxim entre les sumes de totes les files:
 
-<!-- end list -->
+<img src='img/matrius/suma-fila.png' style='height: 10em;'/>
+
+Es pot fer de forma concisa amb `max` i `sum`:
 
 ```python
 def maxima_suma_fila(M: Matriu) -> float:
@@ -251,14 +222,13 @@ def maxima_suma_fila(M: Matriu) -> float:
 
 ---
 
-# Transposar una Matriu (Acció)
+# Transposar una matriu (Acció)
 
-\<img src='./transposa.png' style='height: 9em; float: right; margin: 2em 0 1em 1em;'/\>
+<img src='img/matrius/transposa.png' style='height: 9em;'/>
 
-  * Una **acció** modifica la matriu original (in-place).
-  * S'intercanvien els elements `M[i][j]` i `M[j][i]`.
+Una **acció** modifica la matriu original (in-place).
 
-<!-- end list -->
+S'intercanvien els elements `M[i][j]` i `M[j][i]`.
 
 ```python
 def transposar(M: Matriu) -> None:
@@ -272,11 +242,9 @@ def transposar(M: Matriu) -> None:
 
 ---
 
-# Transposar una Matriu (Funció)
+# Transposar una matriu (Funció)
 
-  * Una **funció** retorna una nova matriu sense modificar l'original.
-
-<!-- end list -->
+Una **funció** retorna una nova matriu sense modificar l'original.
 
 ```python
 def transposta(M: Matriu) -> Matriu:
@@ -288,14 +256,13 @@ def transposta(M: Matriu) -> Matriu:
 
 ---
 
-# Comprovar si una Matriu és Simètrica
+# Comprovar si una matriu és simètrica
 
-\<img src='./matriu\_simetrica.png' style='height: 9em; float: right; margin: .5em .5em 1em .5em;'/\>
+Una matriu és simètrica si `M[i][j] == M[j][i]` per a tots els `i, j`.
 
-  * Una matriu és simètrica si `M[i][j] == M[j][i]` per a tots els `i, j`.
-  * Només cal comprovar la meitat de la matriu.
+<img src='img/matrius/matriu_simetrica.png' style='height: 9em;'/>
 
-<!-- end list -->
+Només cal comprovar la meitat de la matriu.
 
 ```python
 def es_simetrica(M: Matriu) -> bool:
@@ -311,17 +278,19 @@ def es_simetrica(M: Matriu) -> bool:
 
 ---
 
-# Producte de Matrius
+# Producte de matrius
 
-\<img src='./producte-matrius.png' style='height: 9em; float: right; margin: .5em .5em 1em .5em;'/\>
+<img src='img/matrius/producte-matrius.png' style='height: 9em;'/>
 
-  * Si $A$ és $m \times n$ i $B$ és $n \times p$, el producte $C=AB$ és $m \times p$.
-  * L'element $c_{ij}$ es calcula com:
-    $$c_{ij} = \sum_{k=1}^n a_{ik}b_{kj}$$
+Si $A$ és $m \times n$ i $B$ és $n \times p$, el producte $C=AB$ és $m \times p$.
+
+L'element $c\_{ij}$ es calcula com:
+
+  $$c\_{ij} = \sum\_{k=1}^n a\_{ik}b\_{kj}$$
 
 ---
 
-# Producte de Matrius: Codi
+# Producte de matrius
 
 ```python
 def producte(A: Matriu, B: Matriu) -> Matriu:
@@ -329,6 +298,7 @@ def producte(A: Matriu, B: Matriu) -> Matriu:
     Retorna el producte de A i B:
     Prec: A i B tenen mides compatibles per ser multiplicades.
     """
+
     m = len(A)
     n = len(B)
     p = len(B[0])
@@ -341,23 +311,32 @@ def producte(A: Matriu, B: Matriu) -> Matriu:
     ]
 ```
 
+
 ---
 
-# Aplicació: Quadrats Màgics
+class: center, middle
 
-\<img src='./quadrat-magic.png' style='height: 8em; float: right; margin: 2em 0 1em 1em;'/\>
+## Matrius
 
-  * Un quadrat de $n \times n$ és **màgic** si:
+# Quadrats màgics
+
+---
+
+# Quadrats màgics
+
+<img src='img/matrius/quadrat-magic.png' style='height: 8em; '/>
+
+Un quadrat de $n \times n$ és **màgic** si:
+
     1.  Conté tots els nombres de 1 a $n^2$ exactament un cop.
+
     2.  Totes les files, columnes i les dues diagonals sumen el mateix valor.
 
 ---
 
-# El Problema (P99555)
+# Problema P99555
 
-  * **Entrada**: Una seqüència de quadrats, cadascun començant amb la seva mida `n`.
-
-<!-- end list -->
+**Entrada**: Una seqüència de quadrats, cadascun començant amb la seva mida `n`.
 
 ```text
 3
@@ -371,9 +350,7 @@ def producte(A: Matriu, B: Matriu) -> Matriu:
 15 10 3 6
 ```
 
-  * **Sortida**: `yes` si és màgic, `no` si no ho és.
-
-<!-- end list -->
+**Sortida**: `yes` si és màgic, `no` si no ho és.
 
 ```text
 no
@@ -384,10 +361,9 @@ yes
 
 # Estructura del Programa Principal
 
-  * Definim un tipus `Quadrat`.
-  * El programa principal llegeix cada quadrat i crida una funció per verificar si és màgic.
+Definim un tipus `Quadrat`.
 
-<!-- end list -->
+El programa principal llegeix cada quadrat i crida una funció per verificar si és màgic.
 
 ```python
 from typing import TypeAlias
@@ -405,10 +381,9 @@ def main() -> None:
 
 # Funció `es_quadrat_magic`
 
-  * Aquesta funció comprova les dues condicions d'un quadrat màgic.
-  * La podem descompondre en dues funcions auxiliars.
+Aquesta funció comprova les dues condicions d'un quadrat màgic.
 
-<!-- end list -->
+La podem descompondre en dues funcions auxiliars.
 
 ```python
 def es_quadrat_magic(q: Quadrat) -> bool:
@@ -421,11 +396,11 @@ def es_quadrat_magic(q: Quadrat) -> bool:
 
 # Funció `bons_valors`
 
-  * Comprova dues coses:
-    1.  Tots els valors estan en el rang $[1, n^2]$.
-    2.  No hi ha elements repetits (s'utilitza una llista de booleans `vistos`).
+Comprova dues coses:
 
-<!-- end list -->
+1.  Tots els valors estan en el rang $[1, n^2]$.
+
+2.  No hi ha elements repetits (s'utilitza una llista de booleans `vistos`).
 
 ```python
 def bons_valors(q: Quadrat) -> bool:
@@ -450,10 +425,9 @@ def bons_valors(q: Quadrat) -> bool:
 
 # Funció `sumes_iguals`
 
-  * Calcula la suma de la primera diagonal (`suma`).
-  * Comprova que la suma de la segona diagonal, cada fila i cada columna sigui igual a `suma`.
+Calcula la suma de la primera diagonal (`suma`).
 
-<!-- end list -->
+Comprova que la suma de la segona diagonal, cada fila i cada columna sigui igual a `suma`.
 
 ```python
 def sumes_iguals(q: Quadrat) -> bool:
@@ -487,36 +461,45 @@ def sumes_iguals(q: Quadrat) -> bool:
 
   * Exemple: comprovar si alguna suma de fila és diferent de `suma`.
 
-<!-- end list -->
-
 ```python
 if any([sum(fila) != suma for fila in q]):
     return False
 ```
 
+
 ---
 
-# Referències i Llistes de Llistes
+class: center, middle
 
-\<img src='./referencies.png' style='height: 8em; float: right; margin: 0 0 1em 2em;'/\>
+## Matrius
+
+# Referències i llistes de llistes
+
+---
+
+
+# Referències i llistes de llistes
+
+<img src='img/matrius/referencies.png' style='height: 8em;'/>
 
   * Les matrius (llistes de llistes) es manipulen a través de referències.
+
   * Això pot portar a comportaments inesperats si no es té cura.
+
+  * Passa exactament igual que amb les llistes normals, però en dues dimensions.
 
 ---
 
-# El Problema de l'Aliasing
+# *Aliasing*
 
   * Què imprimirà aquest codi?
 
-<!-- end list -->
-
-```python
-fila = [0, 0, 0]
-matriu = [fila, fila, fila]
-matriu[0][0] = 9
-print(matriu)
-```
+  ```python
+  fila = [0, 0, 0]
+  matriu = [fila, fila, fila]
+  matriu[0][0] = 9
+  print(matriu)
+  ```
 
   * **Resultat esperat:** `[[9, 0, 0], [0, 0, 0], [0, 0, 0]]`
 
@@ -526,9 +509,17 @@ print(matriu)
 
 ---
 
-# Solucions a l'Aliasing (Dolentes)
+# *Aliasing*
 
-  * Aquestes opcions **NO** funcionen perquè repliquen les referències, no creen noves llistes per a cada fila.
+<iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=fila%20%3D%20%5B0,%200,%200%5D%0Amatriu%20%3D%20%5Bfila,%20fila,%20fila%5D%0Amatriu%5B0%5D%5B0%5D%20%3D%209%0Aprint%28matriu%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+
+---
+
+
+# Solucions (dolentes) a l'*aliasing*
+
+Aquestes opcions **NO** funcionen perquè repliquen les referències, no creen noves llistes per a cada fila.
 
   * **Opció 1:** `matriu = [fila] * 3`
 
@@ -540,66 +531,48 @@ print(matriu)
 
 ---
 
-# Solucions a l'Aliasing (Bones)
+# Solucions (bones) a l'*aliasing*
 
-  * Aquestes opcions **SÍ** funcionen perquè creen llistes independents per a cada fila.
+Aquestes opcions **SÍ** funcionen perquè creen llistes independents per a cada fila.
 
   * **Opció 1:** Creant còpies de la fila amb `[:]`
 
-<!-- end list -->
-
-```python
-matriu = [fila[:] for _ in range(3)]
-```
+  ```python
+  matriu = [fila[:] for _ in range(3)]
+  ```
 
   * **Opció 2:** Creant una nova llista a cada iteració
 
-<!-- end list -->
-
-```python
-matriu = [[0, 0, 0] for _ in range(3)]
-```
+  ```python
+  matriu = [[0, 0, 0] for _ in range(3)]
+  ```
 
 ---
 
 # Exercici: Copiar una Matriu
 
-  * Donada una matriu `m`, quina de les següents instruccions crea una còpia **completa** i **independent** a `m2`?
-
-<!-- end list -->
+Donada una matriu `m`, quina de les següents instruccions crea una còpia **completa** i **independent** a `m2`?
 
 ```python
-matriu = [
+m = [
     [1, 2, 3, 4],
     [9, 8, 7, 6]
 ]
 ```
 
-  * `matriu2 = matriu`
-  * `matriu2 = matriu[:]`
-  * `matriu2 = [fila for fila in matriu]`
-  * `matriu2 = [fila[:] for fila in matriu]`
-  * `matriu2 = [[e for e in f] for f in matriu]`
+  * `m2 = m`
+  * `m2 = m[:]`
+  * `m2 = [fila for fila in m]`
+  * `m2 = [fila[:] for fila in m]`
+  * `m2 = [[e for e in f] for f in m]`
 
 ---
 
-# Matrius com a Paràmetres
+# Matrius com a paràmetres
 
   * El pas de paràmetres és per referència (com una assignació).
 
   * Les funcions poden modificar la matriu original.
-
-  * **Acció (modifica l'original):**
-
-<!-- end list -->
-
-```python
-def transposar(M: Matriu) -> None:
-    n = len(M)
-    for i in range(n):
-        for j in range(i + 1, n):
-            M[i][j], M[j][i] = M[j][i], M[i][j]
-```
 
   * Reassignar el paràmetre (`matriu = ...`) trenca la connexió amb la variable original.
 
@@ -607,22 +580,28 @@ def transposar(M: Matriu) -> None:
 
 # Acció vs. Funció
 
-  * **Acció (`transposar`)**: Modifica la matriu. Sol ser més eficient (no crea duplicats).
+**Acció**: Modifica la matriu. Sol ser més eficient (no crea duplicats).
 
-      * S'acostuma a anomenar amb un verb (infinitiu o imperatiu).
+  * S'acostuma a anomenar amb un verb (infinitiu o imperatiu).
 
-  * **Funció (`transposta`)**: Retorna un nou resultat sense canviar l'original. Més segura.
+  ```python
+  def transposar(M: Matriu) -> None:
+      n = len(M)
+      for i in range(n):
+          for j in range(i + 1, n):
+              M[i][j], M[j][i] = M[j][i], M[i][j]
+  ```
 
-      * S'acostuma a anomenar amb un substantiu.
+**Funció**: Retorna un nou resultat sense canviar l'original. Més segura.
 
-<!-- end list -->
+  * S'acostuma a anomenar amb un substantiu.
 
-```python
-def transposta(matriu: Matriu) -> Matriu:
-    """Retorna la transposta d'una matriu quadrada donada."""
-    n = len(matriu)
-    return [[matriu[j][i] for j in range(n)] for i in range(n)]
-```
+  ```python
+  def transposta(matriu: Matriu) -> Matriu:
+      """Retorna la transposta d'una matriu quadrada donada."""
+      n = len(matriu)
+      return [[matriu[j][i] for j in range(n)] for i in range(n)]
+  ```
 
 ---
 
