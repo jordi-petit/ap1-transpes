@@ -13,24 +13,31 @@ class: center, middle
 Departament de Ciències de la Computació
 <br>Universitat Politècnica de Catalunya
 
----
-# Llistes
 
-Una estructura de dades que permet emmagatzemar una col·lecció de dades del mateix tipus en una sola variable.
+---
+
+class: center, middle
+
+## Llistes
+
+# Introducció
 
 ---
 
 # Què és una llista?
 
-Una col·lecció d'elements del mateix tipus (enters, reals, etc.), accessibles a través d'un **índex**.
+Una llista és estructura de dades que permet emmagatzemar moltes dades del mateix tipus en una sol paquet.
+
+<center>
+<img src="img/llista.png" style="height: 10em;">
+</center>
+
+Cada element de la col·lecció és accessible a través d'un **índex**.
 
   - L'índex és un enter que indica la posició, **començant per 0**.
 
   - Per a una llista de `n` elements, els índexs van de `0` a `n-1`.
 
-<center>
-<img src="img/llista.png" style="height: 10em;">
-</center>
 
 
 Per exemple, si `v = [3, 5, -1, 7, 2]`, llavors `v[3]` és `7`.
@@ -96,12 +103,14 @@ Les llistes s'escriuen enumerant els seus elements entre claudàtors.
 >>> 4 * [1, 2, 3]
 [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
 
-# Relacionals (<, ==, !=, ...)
+# Relacions d'ordre (<, ==, !=, ...)
 >>> [10, 20, 30] < [10, 40, 4]
 True
 
 # Pertinença (in, not in)
 >>> "oca" in ["conill", "xai", "oca", "anec"]
+True
+>>> 6 not in [2, 5, 8]
 True
 ```
 
@@ -137,7 +146,14 @@ Els índexs poden ser negatius (`-1` és el darrer element).
 
 # Subllistes (*slices*)
 
-Permeten crear noves llistes o modificar segments d'una llista existent. La sintaxi és la mateixa que a `range`.
+Permeten crear noves llistes o modificar segments d'una llista existent.
+
+- Les opcions són semblants al `range`.
+
+- Com al `range`, el darrer índex és exclusiu.
+
+
+Consultes:
 
 ```python
 >>> xs = [30, 50, 10, 50, 60, 20, 50, 70]
@@ -149,9 +165,7 @@ Permeten crear noves llistes o modificar segments d'una llista existent. La sint
 [50, 50, 20, 70]
 ```
 
-<br>
-
-Modificació de segments:
+Modificacions:
 
 ```python
 >>> L = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -159,6 +173,7 @@ Modificació de segments:
 >>> L
 [1, 2, 33, 44, 55, 6, 7, 8, 9]
 ```
+
 
 ---
 
@@ -199,13 +214,12 @@ Per recórrer tots els elements, s'utilitza un bucle `for`.
 
 ```python
 temperatures = [1.0, 12.5, 14.0, 10.1, -3.5]
+
 for temperatura in temperatures:
     print(temperatura)
 ```
 
-<br>
-
-La variable del bucle (`temperatura`) és una **còpia** de l'element. Modificar-la **no canvia la llista original**.
+**Compte:** Assignar la variable sobre la qual s'itera no canvia la llista original:
 
 ```python
 nombres = [3, 5, -2, 4]
@@ -215,10 +229,6 @@ for nombre in nombres:          #  👀 còpia
 
 # nombres continua sent [3, 5, -2, 4] 😢
 ```
-
----
-
-# Recorregut d'una llista (modificació)
 
 Per modificar els elements de la llista, cal iterar sobre els **índexs**.
 
@@ -252,7 +262,7 @@ l1: list[int] = [40, 20, 34, 12, 40]
 # Cal anotar, perquè la llista és buida
 l2: list[float] = []
 
-# Sintàxi alternativa (recomanadada)
+# Sintàxi alternativa (recomanada)
 l3 = list[int]()
 ```
 
@@ -287,14 +297,14 @@ La diferència clau és que els textos són **immutables**: no es poden modifica
 
 # El mètode `split`
 
-Un mètode molt útil dels textos que retorna una llista de paraules.
+Trenca en bocins un text i retorna una llista amb els fragments.
 
 ```python
-# Separa per espais en blanc
+# Separar per espais en blanc
 >>> 'és quan dormo que hi veig clar'.split()
 ['és', 'quan', 'dormo', 'que', 'hi', 'veig', 'clar']
 
-# Separa per un caràcter específic
+# Separar per un caràcter específic
 >>> '01/10/2017'.split('/')
 ['01', '10', '2017']
 ```
@@ -303,12 +313,15 @@ Un mètode molt útil dels textos que retorna una llista de paraules.
 
 # Relació entre llistes i tuples
 
-| Llistes | Tuples |
-|---|---|
-| Mutables | Immutables |
-| Homogènies (per convenció) | Heterogènies (sovint) |
+Llistes:
+- mutables
+- sovint homogènies (per convenció)
+- moltes dades
 
-<br>
+Tuples:
+- immutables
+- sovint heterogènies (per representar registres)
+- poques dades
 
 Els elements de les llistes també es poden desempaquetar:
 
@@ -325,7 +338,7 @@ Els elements de les llistes també es poden desempaquetar:
 # Resum d'operacions
 
 |operació|significat|
-|---|---|
+|:---|:---|
 |`[]`|crea una llista buida.|
 |`[x1,x2,...]`|crea una llista amb elements `x1`, `x2`,...|
 |`L1 + L2`|retorna la concatenació de la llista `L1` i la llista `L2`.|
@@ -344,9 +357,18 @@ Els elements de les llistes també es poden desempaquetar:
 |`L1.extend(L2)`|afegeix la llista `L2` al final de la llista `L1`.|
 |`L.pop()`|elimina i retorna el darrer element de la llista `L1`.|
 
+
 ---
 
-# Exemple: Comptar iguals al darrer
+class: center, middle
+
+## Llistes
+
+# Aplicacions
+
+---
+
+# Comptar iguals al darrer
 
 **Problema**: Donada una seqüència de nombres, comptar quants són iguals al darrer.
 
@@ -375,7 +397,7 @@ print(c)
 
 ---
 
-# Exemple: Comptar iguals al darrer
+# Comptar iguals al darrer
 
 Estructurar el codi en funcions el fa més llegible i reutilitzable.
 
@@ -407,7 +429,7 @@ if __name__ == "__main__":
 
 ---
 
-# Exemple: Comptar iguals al darrer
+# Comptar iguals al darrer
 
 Python sovint ofereix maneres més directes de fer les coses.
 
@@ -424,13 +446,11 @@ print(L.count(L[-1]))
 
 ---
 
-# Exemple: És capicua?
+# És capicua?
 
 Una llista és **capicua** (o palíndrom) si es llegeix igual del dret que del revés.
 
 Ex: `[7, 5, 6, 5, 7]`
-
-<br>
 
 Implementació senzilla usant `reversed()`:
 
@@ -441,11 +461,7 @@ def capicua(llista: list[int]) -> bool:
     return llista == list(reversed(llista))
 ```
 
----
-
-# Exemple: És capicua? (millorat)
-
-Una versió més eficient compara els elements simètrics des dels extrems cap al centre, aturant-se a la primera diferència.
+Més eficient: comparar els elements simètrics des dels extrems cap al centre, aturant-se a la primera diferència.
 
 ```python
 def capicua(llista: list[int]) -> bool:
@@ -460,13 +476,11 @@ def capicua(llista: list[int]) -> bool:
 
 ---
 
-# Exemple: Operacions amb vectors
+# Operacions amb vectors
 
 Podem representar vectors matemàtics amb llistes de reals (`list[float]`).
 
-<br>
-
-Producte escalar de dos vectors $x=(x_0,...,x_{n-1})$ i $y=(y_0,...,y_{n-1})$ és $\sum_{i=0}^{n-1} x_i y_i$.
+El producte escalar de dos vectors $x=(x\_1,...,x\_n)$ i $y=(y\_1,...,y\_n)$ és $\sum\_{i=1}^{n} x_i y_i$:
 
 ```python
 def producte_escalar(x: list[float], y: list[float]) -> float:
@@ -478,15 +492,15 @@ def producte_escalar(x: list[float], y: list[float]) -> float:
     return s
 ```
 
+Compte: En Python, els índexs comencen en 0, no en 1.
+
 ---
 
-# Exemple: Operacions amb vectors (mòdul)
+# Operacions amb vectors
 
-El mòdul d'un vector $x$ és $\sqrt{\sum_{i=0}^{n-1} x_i^2}$.
+El mòdul d'un vector $x$ és $\sqrt{\sum_{i=1}^{n} x_i^2}$.
 
-<br>
-
-Això és equivalent a $\sqrt{producte\_escalar(x, x)}$. Reutilitzar codi és una bona pràctica\!
+Això és equivalent a $\sqrt{x · x}$.
 
 ```python
 import math
@@ -497,15 +511,13 @@ def modul(x: list[float]) -> float:
     return math.sqrt(producte_escalar(x, x))
 ```
 
+Reutilitzar codi és una bona pràctica!
+
 ---
 
-# Exemple: Operacions amb vectors (perpendicularitat)
+# Operacions amb vectors
 
 Dos vectors són perpendiculars si el seu producte escalar és zero.
-
-<br>
-
-Quan es treballa amb reals (`float`), és més segur comprovar si el valor absolut del resultat és molt proper a zero, per evitar problemes de precisió.
 
 ```python
 def perpendiculars(a: list[float], b: list[float]) -> bool:
@@ -514,9 +526,11 @@ def perpendiculars(a: list[float], b: list[float]) -> bool:
     return abs(producte_escalar(a, b)) < 1e-12
 ```
 
+Quan es treballa amb reals (`float`), és més segur comprovar si el valor absolut del resultat és molt proper a zero, per evitar problemes de precisió.
+
 ---
 
-# Exemple: Cercar un subtext
+# Cercar un subtext
 
 **Problema**: Donats `text` i `subtext`, determinar si `text` conté `subtext`.
 
@@ -537,7 +551,7 @@ def conte(text: str, subtext: str) -> bool:
 
 ---
 
-# Exemple: Cercar un subtext (millorat)
+# Cercar un subtext
 
 **Solució 2 (més eficient)**: Evitar crear slices (que consumeixen memòria i temps) comparant caràcter a caràcter.
 
@@ -559,6 +573,18 @@ def conte(text: str, subtext: str) -> bool:
             return True
     return False
 ```
+
+
+---
+
+# Cercar un subtext
+
+**Solució 3 (més eficient i simple)**:
+
+```python
+subtext in text
+```
+
 
 ---
 
@@ -590,22 +616,19 @@ quadrats = [i * i for i in range(n)]
 
 Es pot afegir una clàusula `if` per filtrar els elements que s'inclouen a la llista.
 
-<br>
-
 `[expressió for variable in seqüència if condició]`
 
 <center>
 <img src="img/esquema.png" style="height: 5em;">
 </center>
 
-**Exemple**: Quadrats entre 0 i 20 que acaben en 6.
+**Exemple**: Quadrats de nombres entre 0 i 20 que acaben en 6.
 
 ```python
->>> [i * i for i in range(21) if i * i % 10 == 6]
-[16, 36, 196, 256]
+>>> [i * i for i in range(21) if i * i % 10 == 6]           # [16, 36, 196, 256]
 ```
 
-Això és equivalent a:
+Això és equivalent però més lleuger que:
 
 ```python
 llista = []
@@ -616,7 +639,7 @@ for i in range(21):
 
 ---
 
-# Llistes per comprensió (més exemples)
+# Llistes per comprensió
 
 **`for` aniuats**:
 
@@ -652,24 +675,39 @@ Una terna pitagòrica són tres naturals $a$, $b$, $c$ tals que $a^2+b^2=c^2$.
 
 ```python
 >>> n = 25  # llargada màxima
+
 >>> [   (a, b, c)
 ...     for a in range(1, n + 1)
 ...     for b in range(a, n + 1)
 ...     for c in range(b, n + 1)
 ...     if a**2 + b**2 == c**2
 ... ]
-[(3, 4, 5), (5, 12, 13), (6, 8, 10), (7, 24, 25), (8, 15, 17), (9, 12, 15), (12, 16, 20), (15, 20, 25)]
+
+# [(3, 4, 5), (5, 12, 13), (6, 8, 10), (7, 24, 25), (8, 15, 17), (9, 12, 15), (12, 16, 20), (15, 20, 25)]
 ```
+
+
 
 ---
 
+class: center, middle
+
+## Llistes
+
 # Garbell d'Eratòstenes
 
-Un algorisme eficient per trobar tots els nombres primers fins a un valor `m`.
+---
+
+# Trobar nombres primers
+
+Es volen trobar tots els nombres primers fins a un valor `m`.
+
+Exemple: per `m = 20`, la sortida ha de ser `[2, 3, 5, 7, 11, 13, 17, 19]`.
 
 <br>
 
-**Solució simple (i lenta)**:
+
+**Solució simple**:
 Reutilitzar una funció `es_primer(n)` per a cada nombre.
 
 ```python
@@ -679,7 +717,7 @@ def primers(m: int) -> list[int]:
     return [n for n in range(m + 1) if es_primer(n)]
 ```
 
-Per `m = 1.000.000`, triga uns **7.4 segons**.
+Inconvenient: és lent. Per `m = 1.000.000`, em triga uns 7 segons.
 
 ---
 
@@ -699,9 +737,11 @@ La idea és eliminar (ratllar) els nombres compostos en lloc de comprovar la pri
 
 Els nombres que queden sense ratllar són els primers.
 
+**TODO:** Millorar aquesta transpa!
+
 ---
 
-# Garbell d'Eratòstenes: Implementació (part 1)
+# Garbell d'Eratòstenes: Implementació
 
 Primer, una funció que retorna una llista de booleans (`garbell`), on `garbell[i]` és `True` si `i` és primer.
 
@@ -722,7 +762,7 @@ def eratostenes(m: int) -> list[bool]:
 
 ---
 
-# Garbell d'Eratòstenes: Implementació (part 2)
+# Garbell d'Eratòstenes: Implementació
 
 Després, una funció `primers` que utilitza el garbell per construir la llista final de nombres primers.
 
@@ -739,15 +779,33 @@ def primers(m: int) -> list[int]:
 
 <br>
 
-Per `m = 1.000.000`, ara triga només **0.36 segons**\!
+Per `m = 1.000.000`, ara triga només **0.36 segons**!
 
 ---
 
-# Referències i Python Tutor
+class: center, middle
 
-  - Les llistes són **objectes**.
+## Llistes
+
+# Referències
+
+---
+
+# Referències
+
+  - En Python, les llistes són **objectes**.
+
   - Les variables no contenen la llista directament, sinó una **referència** (una "fletxa") a l'objecte llista.
-  - **Python Tutor** és una eina web per visualitzar l'execució del codi i entendre com funcionen les referències.
+
+    ```python
+    L1 = [1, 2, 3, 4]
+    L2 = L1
+    ```
+
+    <center>
+    <img src="img/referencies1.png" style="height: 6em;">
+    </center>
+
 
 ---
 
@@ -755,15 +813,11 @@ Per `m = 1.000.000`, ara triga només **0.36 segons**\!
 
 Per a tipus com `int`, `float`, `bool`, l'assignació (`=`) copia el **valor**.
 
-```python
-a = 2
-b = a
-a = a + 1
-print(a)    # escriu 3
-print(b)    # escriu 2
-```
-
 La variable `b` té la seva pròpia còpia del valor `2` i no es veu afectada pel canvi a `a`.
+
+<iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=a%20%3D%202%0Ab%20%3D%20a%0Aa%20%3D%20a%20%2B%201%20%0Aprint%28a%29%0Aprint%28b%29%0A&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+
 
 ---
 
@@ -771,15 +825,10 @@ La variable `b` té la seva pròpia còpia del valor `2` i no es veu afectada pe
 
 Per a llistes, l'assignació (`=`) copia la **referència**.
 
-```python
-a = [3, 2, 1]
-b = a
-a.append(9)
-print(a)    # escriu [3, 2, 1, 9]
-print(b)    # escriu [3, 2, 1, 9]
-```
+Les variables `a` i `b` apunten al **mateix objecte llista**.
 
-Les variables `a` i `b` apunten al **mateix objecte llista**. Un canvi a través de `a` és visible a través de `b`.
+<iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=a%20%3D%20%5B3,%202,%201%5D%0Ab%20%3D%20a%0Aa.append%289%29%0Aprint%28a%29%0Aprint%28b%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
 
 ---
 
@@ -787,15 +836,11 @@ Les variables `a` i `b` apunten al **mateix objecte llista**. Un canvi a través
 
 Per crear una còpia real i independent d'una llista, es pot utilitzar slicing `[:]`.
 
-```python
-a = [3, 2, 1]
-b = a[:]      # b és una còpia de a
-a.append(9)
-print(a)    # escriu [3, 2, 1, 9]
-print(b)    # escriu [3, 2, 1]
-```
-
 Ara `a` i `b` apunten a objectes diferents.
+
+<iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=a%20%3D%20%5B3,%202,%201%5D%0Ab%20%3D%20a%5B%3A%5D%0Aa.append%289%29%0Aprint%28a%29%0Aprint%28b%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+
 
 ---
 
@@ -803,16 +848,12 @@ Ara `a` i `b` apunten a objectes diferents.
 
 Quan es passa un tipus primitiu a una funció, es passa una **còpia del valor**.
 
-```python
-def f(x: int) -> None:
-    x = 3   # Aquesta assignació només afecta la variable local x
-
-a = 2
-f(a)
-print(a)    # escriu 2
-```
 
 La variable original `a` no canvia.
+
+<iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=def%20f%28x%3A%20int%29%20-%3E%20None%3A%0A%20%20%20%20x%20%3D%203%0A%0Aa%20%3D%202%0Af%28a%29%0Aprint%28a%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+
 
 ---
 
@@ -820,51 +861,37 @@ La variable original `a` no canvia.
 
 Quan es passa una llista a una funció, es passa una **còpia de la referència**.
 
-```python
-def f(x: list[int]) -> None:
-    x.append(9)  # Aquest canvi (mutació) afecta l'objecte original
-
-a = [3, 2, 1]
-f(a)
-print(a)        # escriu [3, 2, 1, 9]
-```
-
 El paràmetre `x` i la variable `a` apunten al mateix objecte. Si la funció **muta** l'objecte, el canvi és permanent.
 
----
-
-# Exercici: Reassignació vs. Mutació
-
-Què passa si dins de la funció fem una **reassignació** en lloc d'una **mutació**?
-
-```python
-def f(x: list[int]) -> None:
-    x = x + [9]  # Crea una NOVA llista i assigna la seva referència a x
-
-a = [3, 2, 1]
-f(a)
-print(a)        # escriu [3, 2, 1]
-```
-
-L'operador `+` crea una nova llista. L'assignació `x = ...` només canvia la referència local `x` dins de la funció. La referència original `a` no es modifica.
+<iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=def%20f%28x%29%3A%0A%20%20%20%20x.append%289%29%0A%0Aa%20%3D%20%5B3,%202,%201%5D%0Af%28a%29%0Aprint%28a%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 ---
 
 # Resum sobre referències
 
   - **Mutació**: Canviar el contingut d'un objecte existent.
+
       - Ex: `L.append(x)`, `L[i] = y`, `L.clear()`.
+
       - Els canvis són visibles a través de totes les referències a l'objecte.
 
-<br>
-
   - **Reassignació**: Canviar la referència que conté una variable per apuntar a un altre objecte (o a un de nou).
+
       - Ex: `L = [1, 2, 3]`, `L = L + L`.
+
       - Només afecta la variable local, no canvia l'objecte original al qual apuntava.
 
 ---
 
-# Tipus genèrics: El problema
+class: center, middle
+
+## Llistes
+
+# Tipus genèrics
+
+---
+
+# Problemàtica
 
 Volem escriure una funció que funcioni amb llistes de diferents tipus sense duplicar codi.
 
@@ -894,9 +921,10 @@ def posicio_maxim(L: list[Any]) -> int:
     Retorna una posició p tal que L[p] >= x per a tot x en L.
     Precondició: L no és buida.
     """
+
     p = 0
     for i in range(1, len(L)):
-        if L[i] > L[p]: # Error a l'original, L[i] > p no té sentit
+        if L[i] > L[p]:
             p = i
     return p
 ```
@@ -905,7 +933,7 @@ Això fa que la funció sigui **genèrica**, acceptant llistes d'enters, reals, 
 
 ---
 
-# Variables de tipus: La necessitat
+# Variables de tipus
 
 De vegades, `Any` és massa genèric. Per exemple, en una funció d'ordenació, volem expressar que el tipus de la llista de sortida és el **mateix** que el de la llista d'entrada.
 
@@ -919,7 +947,7 @@ def ordena(L: list[Any]) -> list[Any]:
 
 ---
 
-# Les variables de tipus: `TypeVar`
+# Variables de tipus
 
 `TypeVar` permet crear un "paràmetre de tipus" per enllaçar els tipus dins d'una signatura.
 
@@ -936,4 +964,4 @@ def ordena(L: list[T]) -> list[T]:
     ...
 ```
 
-Amb `TypeVar`, si `ordena` rep una `list[int]`, el sistema sap que ha de retornar una `list[int]`.
+Amb `TypeVar`, si `ordena` rep una `list[int]`, el sistema sap que retorna una `list[int]`.

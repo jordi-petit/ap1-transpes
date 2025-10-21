@@ -72,7 +72,7 @@ Al fitxer adjunt tens un capítol de llibre sobre Python escrit en Markdown. Vul
 - 🚧 [Funcions i accions](funcions-i-accions.html)
 - 🚧 [Seqüències](sequencies.html)
 - 🚧 [Recursivitat](recursivitat.html)
-- 🚧 [Llistes](llistes.html)
+- 👍 [Llistes](llistes.html)
 - 🚧 [Algorismes de cerca i ordenació](cerca-i-ordenacio.html)
 - 🚧 [Matrius](matrius.html)
 - 🚧 [Estructures](estructures.html)
