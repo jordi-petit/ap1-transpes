@@ -923,7 +923,7 @@ def posicio_maxim(L: list[Any]) -> int:
     """
 
     p = 0
-    for i in range(1, len(L)):
+    for i in range(1, len(L) + 1):
         if L[i] > L[p]:
             p = i
     return p
