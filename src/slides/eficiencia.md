@@ -306,7 +306,9 @@ class: center, middle
 # Notació O Gran
 
   * **Definició:** $O(g)$ és el conjunt de funcions $f$ tals que:
+  <div>
     $$O(g) = \{ f: \mathbb{N} \rightarrow \mathbb{N} \mid \exists c \in \mathbb{N} \; : \exists n_0 \in \mathbb{N} \; : \forall n \ge n_0 \; : f(n) \le c \cdot g(n) \}$$
+  </div>
 
   * $f$ creix **com a màxim** tan ràpidament com $g$.
 
@@ -327,7 +329,9 @@ class: center, middle
 # Notació $\Omega$
 
   * **Definició:** $\Omega(g)$ és el conjunt de funcions $f$ tals que:
+  <div>
     $$\Omega (g) = \{ f: \mathbb{N} \rightarrow \mathbb{N} \mid \exists c \in \mathbb{N} \; : \exists n_0 \in \mathbb{N} \; : \forall n \ge n_0 \; : f(n) \ge c \cdot g(n) \}$$
+  </div>
 
   * $f$ creix **com a mínim** tan ràpidament com $g$.
 
@@ -336,9 +340,30 @@ class: center, middle
 # Notació $\Theta$
 
   * **Definició:** $\Theta(g)$ és el conjunt de funcions $f$ tals que:
-    $$\Theta (g) = \{ f: \mathbb{N} \rightarrow \mathbb{N} \mid \exists c_1, c_2 \in \mathbb{N} \; : \exists n_0 \in \mathbb{N} \; : \forall n \ge n_0 \; : c_1 g(n) \le f(n) \le c_2 g(n) \}$$
+  <div>
+    $$\Theta (g) = \{ f: \mathbb{N} \rightarrow \mathbb{N} \mid \exists c_1, c_2 \in \mathbb{N} \; : \exists n_0 \in \mathbb{N} \; : $$
+  </div>
+  <div>
+    $$ \forall n \ge n_0 \; : c_1 g(n) \le f(n) \le c_2 g(n) \}$$
+  </div>
 
   * $f$ creix **exactament** com $g$ (ignorant constants).
+
+
+---
+
+# Convenció
+
+Malgrat que $O(g)$ és un conjunt de funcions, sovint s'escriu:
+$$f(n) = O(g(n))$$
+per indicar
+$$f \in O(g)$$
+
+És una convenció àmpliament utilitzada que facilita la comunicació.
+
+Exemple:
+$$3(n− 1)(n + 2) = 3n^2 + 3n− 6 = O(n^2)$$
+
 
 ---
 
@@ -361,20 +386,6 @@ class: center, middle
 
       * $O(f_1) \cdot O(f_2) = O(f_1 \cdot f_2)$
       * $\Theta(f_1) \cdot \Theta(f_2) = \Theta(f_1 \cdot f_2)$
-
----
-
-# Convenció
-
-  * Malgrat que $O(g)$ és un conjunt de funcions, sovint s'escriu:
-    $$f(n) = O(g(n))$$
-    per indicar
-    $$f \in O(g)$$
-
-  * És una convenció àmpliament utilitzada que facilita la comunicació.
-
-  * Exemple:
-    $$3(n− 1)(n + 2) = 3n^2 + 3n− 6 = O(n^2)$$
 
 
 ---
