@@ -17,44 +17,40 @@ Departament de Ciències de la Computació
 
 # Estructures
 
-\<img src='./estructures.png' style='height: 8em; float: right; margin: 0 0 1em 2em;'/\>
+Una **estructura** és una col·lecció de dades relacionades emmagatzemades com un tot.
 
-  * Una **estructura** és una col·lecció de dades relacionades emmagatzemades com un tot.
+Cada dada s'anomena **camp** i té un nom i un tipus.
 
-  * Cada dada s'anomena **camp** i té un nom i un tipus.
-
-  * Són mutables i s'accedeix als camps per nom.
+Són mutables i s'accedeix als camps per nom.
 
 ---
 
 # Analogia: Formularis
 
-\<center\>
-\<img src='./formulari.png' style='height: 30em;'/\>
-\</center\>
+<img src="./img/estructures/formulari.png" style="height: 20em; display: flex; margin: auto;">
 
-  * Una definició d'estructura és com una plantilla de formulari.
-  * Una variable d'aquell tipus (instància) és com un formulari omplert.
+Una definició d'estructura és com una plantilla de formulari.
+
+Una variable d'aquell tipus (instància) és com un formulari omplert.
 
 ---
 
-# Declaració: `dataclasses`
+# Definició: `dataclasses`
 
-  * En Python, es declaren amb `@dataclass` dins d'una `class`.
+En Python, es defineixen amb `@dataclass` dins d'una `class`.
 
-  * Cada camp es defineix amb el seu nom i el seu tipus.
+Cada camp es defineix amb el seu nom i el seu tipus.
 
-<!-- end list -->
-
+<br/>
 ```python
 from dataclasses import dataclass
 
 @dataclass
 class Pellicula:
     identificador: int
-    titol: str
-    director: str
-    any: int
+    titol:         str
+    director:      str
+    any:           int
     blanc_i_negre: bool
 ```
 
@@ -62,12 +58,11 @@ class Pellicula:
 
 # Creació d'instàncies
 
-  * Es creen instàncies cridant al tipus com si fos una funció (un **constructor**).
+Es creen instàncies cridant al tipus com si fos una funció (un **constructor**).
 
-  * Els valors s'assignen per ordre.
+Els valors s'assignen per ordre.
 
-<!-- end list -->
-
+<br/>
 ```python
 p1 = Pellicula(
     1001,
@@ -80,7 +75,7 @@ p1 = Pellicula(
 p2 = Pellicula(
     1234,
     "The Kid",
-    "Buster Keaton",       # incorrecte!
+    "Buster Keaton",      # incorrecte!
     1921,
     True,
 )
@@ -90,14 +85,17 @@ p2 = Pellicula(
 
 # Accés i modificació de camps
 
-  * S'accedeix als camps amb la notació `variable.camp`.
+S'accedeix als camps amb la notació variable`.`camp.
 
-  * Es poden consultar i modificar.
+Es poden consultar i modificar.
 
-<!-- end list -->
-
+<br/>
 ```python
 # Consultar
+
+print(p1.titol)
+print(p2.titol)
+
 if p1.any < p2.any:
     print("Anterior")
 else:
@@ -105,6 +103,9 @@ else:
 
 # Modificar
 p2.director = "Charlie Chaplin"
+
+# Error: camp inexistent 💣
+print(p1.protagonista)  
 ```
 
 ---
@@ -113,31 +114,37 @@ p2.director = "Charlie Chaplin"
 
 1.  **Accés als camps**:
 
-      * Estructures: per nom (`p1.titol`). Més llegible.
       * Tuples: per posició (`t[1]`). Cal recordar l'ordre.
+
+      * Estructures: per nom (`p1.titol`). Més llegible.
+
 
 2.  **Mutabilitat**:
 
-      * Estructures: són **mutables** (es poden canviar).
-      * Tuples: són **immutables**.
+      * Tuples: són **immutables** (no es poden canviar els seus camps).
+
+      * Estructures: són **mutables** (es poden canviar els seus camps).
+      
 
 ---
 
-# Aplicació: Rellotge despertador
+class: center, middle
 
-\<img src='./rellotge-digital.png' style='height: 8em; float: right; margin: 0 0 1em 2em;'/\>
+## Estructures
 
-  * Utilitzarem una estructura per agrupar les hores, minuts i segons d'un rellotge.
+# Rellotge despertador
 
 ---
 
-# Rellotge: Definició del tipus
+# Rellotge despertador
+
+<img src='./img/rellotge-digital.png' style='height: 6em; display: flex; margin: auto;'>
+
+Definició del tipus:
 
   * Definim una estructura `Hora` amb tres camps enters: `h`, `m`, `s`.
 
   * Podem donar valors per defecte.
-
-<!-- end list -->
 
 ```python
 @dataclass
@@ -151,37 +158,38 @@ class Hora:
 
 # Rellotge: Construcció de valors
 
-  * **Constructor posicional:**
+  * Constructor posicional:
 
     ```python
     migdia = Hora(12, 0, 0)
     ```
 
-  * **Constructor amb paràmetres anomenats:**
+  * Constructor amb paràmetres anomenats:
 
     ```python
     alarma = Hora(s=0, m=30, h=7)  # 07:30:00
     ```
 
-  * **Utilitzant valors per defecte:**
+  * Utilitzant valors per defecte:
 
     ```python
     alarma = Hora(m=30, h=7)    # 07:30:00, s=0 per defecte
     alarma = Hora(7, 30)        # 07:30:00, s=0 per defecte
+    mitjanit = Hora()           # 00:00:00, h=m=s=0 per defecte
     ```
 
 ---
 
 # Rellotge: Operacions (I)
 
-  * **Acció per escriure una hora:**
+  * Acció per escriure una hora:
 
     ```python
     def escriure_hora(hora: Hora) -> None:
         print(f'{hora.h:02d}:{hora.m:02d}:{hora.s:02d}')
     ```
 
-  * **Acció per incrementar un segon (modifica el paràmetre):**
+  * Acció per incrementar un segon (modifica el paràmetre):
 
     ```python
     def incrementar_un_segon(hora: Hora) -> None:
@@ -200,28 +208,26 @@ class Hora:
 
 # Rellotge: Operacions (II)
 
-  * **Funció per incrementar un segon (retorna una nova instància):**
+  * Funció per incrementar un segon (retorna una nova instància):
 
-  * Es fa una còpia amb `dataclasses.replace` per no modificar l'original.
+  ```python
+  import dataclasses
 
-<!-- end list -->
+  def un_segon_mes_tard(hora: Hora) -> Hora:
+      despres = dataclasses.replace(hora)
+      despres.s += 1
+      if despres.s == 60:
+          despres.s = 0
+          despres.m += 1
+          if despres.m == 60:
+              despres.m = 0
+              despres.h += 1
+              if despres.h == 24:
+                  despres.h = 0
+      return despres
+  ```
 
-```python
-import dataclasses
-
-def un_segon_mes_tard(hora: Hora) -> Hora:
-    despres = dataclasses.replace(hora)
-    despres.s += 1
-    if despres.s == 60:
-        despres.s = 0
-        despres.m += 1
-        if despres.m == 60:
-            despres.m = 0
-            despres.h += 1
-            if despres.h == 24:
-                despres.h = 0
-    return despres
-```
+  Es fa una còpia amb `dataclasses.replace` per no modificar l'original.
 
 ---
 
@@ -246,15 +252,25 @@ if __name__ == '__main__':
     main()
 ```
 
+
+---
+
+class: center, middle
+
+## Estructures
+
+# Aplicació: Polígons Simples
+
 ---
 
 # Aplicació: Polígons Simples
 
-\<img src='./poligons.png' style='height: 8em; float: right; margin: 0 0 1em 2em;'/\>
+<img src='./img/estructures/poligons.png' style='height: 15em; display: flex; margin: auto;'>
 
-  * Volem manipular polígons simples per calcular-ne el perímetre i l'àrea.
+Volem manipular polígons simples per calcular-ne el perímetre i l'àrea.
 
-  * Necessitarem un tipus per a **punts** i un altre per a **polígons**.
+Necessitarem un tipus per a **punts** i un altre per a **polígons**.
+
 
 ---
 
@@ -262,91 +278,69 @@ if __name__ == '__main__':
 
   * Un punt en el pla té dues coordenades (x, y).
 
-<!-- end list -->
-
-```python
-@dataclass
-class Punt:
-    x: float
-    y: float
-```
+  ```python
+  @dataclass
+  class Punt:
+      x: float
+      y: float
+  ```
 
   * Podem definir operacions sobre punts, com la distància.
 
-<!-- end list -->
+  ```python
+  def distancia(p: Punt, q: Punt) -> float:
+      """Retorna la distància euclidiana entre dos punts."""
 
-```python
-import math
-
-def distancia(p: Punt, q: Punt) -> float:
-    """Retorna la distància euclidiana entre dos punts."""
-    return math.sqrt((p.x - q.x) ** 2 + (p.y - q.y) ** 2)
-```
+      return ((p.x - q.x) ** 2 + (p.y - q.y) ** 2) ** 0.5
+  ```
 
 ---
 
 # Polígons: Tipus `Poligon`
 
-\<img src='./poligon-amb-coords.png' style='width: 18em; float: right; margin: 0 0 1em 2em;'/\>
+<img src='./img/estructures/poligon-amb-coords.png' style='height: 10em; display: flex; margin: auto; '>
 
-  * Un polígon es pot representar com una llista de vèrtexs (`Punt`).
+* Un polígon es pot representar com una llista de vèrtexs (`Punt`).
 
-  * Fem servir un àlies de tipus per claredat.
-
-<!-- end list -->
-
-```python
-from typing import TypeAlias
-
-Poligon: TypeAlias = list[Punt]
+  ```python
+  Poligon: TypeAlias = list[Punt]   # from typing import TypeAlias
 ```
 
----
+* Creem un polígon com una llista d'instàncies de `Punt`.
 
-# Polígons: Creació i accés
+  ```python
+  pol = [ Punt(6, 5), Punt(0, 8), Punt(-5, 3), Punt(-2, -4), Punt(6, -1) ]
+  ```
 
-  * Creem un polígon com una llista d'instàncies de `Punt`.
-
-<!-- end list -->
-
-```python
-pol = [
-    Punt( 6,  5),
-    Punt( 0,  8),
-    Punt(-5,  3),
-    Punt(-2, -4),
-    Punt( 6, -1),
-]
-```
-
-  * **Accés:** `pol[1].x`
-      * `pol` és una `list`, `pol[1]` selecciona el segon element.
-      * `pol[1]` és un `Punt`, `.x` selecciona el seu camp `x`.
+* Accés: `pol[2].x` retorna -5.
+      * `pol` és una `list`, `pol[2]` selecciona el segon element.
+      * `pol[2]` és un `Punt`, `.x` selecciona el seu camp `x` (un `float`).
 
 ---
 
 # Polígons: Perímetre
 
-  * Sumem les distàncies entre punts consecutius, incloent la distància entre el darrer i el primer.
+  * Sumem les distàncies entre punts consecutius, <br/>
+  incloent la distància entre el darrer i el primer.
 
-<!-- end list -->
+  ```python
+  def perimetre(poligon: Poligon) -> float:
+      """Retorna el perímetre d'un polígon simple."""
 
-```python
-def perimetre(poligon: Poligon) -> float:
-    """Retorna el perímetre d'un polígon simple."""
-    n = len(poligon)
-    p = distancia(poligon[-1], poligon[0])
-    for i in range(n - 1):
-        p += distancia(poligon[i], poligon[i + 1])
-    return p
-```
+      n = len(poligon)
+      p = distancia(poligon[-1], poligon[0])
+      for i in range(n - 1):
+          p += distancia(poligon[i], poligon[i + 1])
+      return p
+  ```
 
-  * Versió compacta:
-    ```python
-    def perimetre(poligon: Poligon) -> float:
-        n = len(poligon)
-        return sum([distancia(poligon[i], poligon[i+1]) for i in range(-1, n-1)])
-    ```
+  * Més compacte:
+
+  ```python
+  def perimetre(poligon: Poligon) -> float:
+      n = len(poligon)
+      return sum([distancia(poligon[i], poligon[i+1]) for i in range(-1, n-1)])
+  ```
 
 ---
 
@@ -354,27 +348,31 @@ def perimetre(poligon: Poligon) -> float:
 
   * Podem calcular l'àrea amb la **fórmula de Gauss**.
 
-<!-- end list -->
+  ```python
+  def area(poligon: Poligon) -> float:
+      """Retorna l'àrea d'un polígon simple."""
 
-```python
-def area(poligon: Poligon) -> float:
-    """Retorna l'àrea d'un polígon simple."""
-    n = len(poligon)
-    s = poligon[n - 1].x * poligon[0].y - poligon[0].x * poligon[n - 1].y
-    for i in range(n - 1):
-        s += poligon[i].x * poligon[i + 1].y - poligon[i + 1].x * poligon[i].y
-    return s / 2
-```
+      n = len(poligon)
+      s = poligon[n - 1].x * poligon[0].y - poligon[0].x * poligon[n - 1].y
+      for i in range(n - 1):
+          s += poligon[i].x * poligon[i + 1].y - poligon[i + 1].x * poligon[i].y
+      return s / 2
+  ```
+
+
+---
+
+class: center, middle
+
+## Estructures
+
+# Ordenació d'Estructures
 
 ---
 
 # Ordenació d'Estructures
 
-\<img src='./ordenacio.png' style='height: 8em; float: right; margin: 0 0 1em 2em;'/\>
-
-  * Per defecte, les estructures no es poden ordenar amb `<`, `>`, etc.
-
-<!-- end list -->
+Per defecte, les estructures no es poden ordenar amb `<`, `>`, etc.
 
 ```python
 @dataclass
@@ -392,9 +390,7 @@ TypeError: "'<' not supported between instances of 'Hora' and 'Hora'"
 
 # Ordenació amb `key`
 
-  * Es pot proporcionar una funció al paràmetre `key` que retorna un valor numèric per a cada element, que sí que es pot ordenar.
-
-<!-- end list -->
+Es pot proporcionar una funció al paràmetre `key` que retorna un valor numèric per a cada element, que sí que es pot ordenar.
 
 ```python
 def nombre_de_segons(hora: Hora) -> int:
@@ -403,7 +399,7 @@ def nombre_de_segons(hora: Hora) -> int:
 
 L = [Hora(15,30,0), Hora(14,49,59), Hora(9,0,0)]
 
-# Ordenem segons el resultat de la funció 'key'
+# Ordenem segons el resultat de la funció key
 >>> sorted(L, key=nombre_de_segons)
 [Hora(h=9, m=0, s=0), Hora(h=14, m=49, s=59), Hora(h=15, m=30, s=0)]
 ```
@@ -412,21 +408,21 @@ L = [Hora(15,30,0), Hora(14,49,59), Hora(9,0,0)]
 
 # Ordenació amb `cmp_to_key`
 
-  * S'utilitza quan és més fàcil definir com comparar dos elements entre si que assignar un valor numèric a cadascun.
+S'utilitza quan és més fàcil definir com comparar dos elements entre si que assignar un valor numèric a cadascun.
 
-  * La funció de comparació ha de retornar:
+Cal una funció de comparació que, donats dos valors, ha de retornar:
 
-      * **Negatiu**: si el primer element és menor que el segon.
-      * **Zero**: si són iguals.
-      * **Positiu**: si el primer element és major que el segon.
+* **Negatiu**: si el primer element és menor que el segon
+
+* **Zero**: si són iguals
+
+* **Positiu**: si el primer element és major que el segon
 
 ---
 
 # `cmp_to_key`: Exemple
 
-  * **Problema**: Ordenar rectangles per àrea (ascendent), després per perímetre (descendent) i finalment per amplada (ascendent).
-
-<!-- end list -->
+**Problema**: Ordenar rectangles per àrea (ascendent), després per perímetre (descendent) i finalment per amplada (ascendent).
 
 ```python
 from dataclasses import dataclass
